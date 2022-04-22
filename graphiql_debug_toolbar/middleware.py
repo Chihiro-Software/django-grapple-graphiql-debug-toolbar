@@ -51,7 +51,7 @@ class DebugToolbarMiddleware(BaseMiddleware):
         self.store_id = None
 
     def process_view(self, request, view_func, *args):
-        if (
+        if view_func.__name__ == "graphiql" or (
             hasattr(view_func, "view_class")
             and issubclass(view_func.view_class, GraphQLView)
             and view_func.view_initkwargs.get("graphiql")
